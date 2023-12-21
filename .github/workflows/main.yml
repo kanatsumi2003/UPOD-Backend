@@ -41,5 +41,5 @@ jobs:
              docker stop ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG || true
              docker rm ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG || true
              docker rmi ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG || true
-             docker pull ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG
+             docker pull docker pull kanatsumi2003/upod.api:latest
              docker run -p 8082:80 ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG
