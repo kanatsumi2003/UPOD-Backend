@@ -37,7 +37,7 @@ jobs:
          host: ${{ secrets.EC2_HOST }}
          username: ${{ secrets.EC2_USERNAME }}
          key: ${{ secrets.EC2_PRIVATE_KEY }}
-         scripts: |
+         script: |
              docker stop ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG || true
              docker rm ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG || true
              docker rmi ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG || true
