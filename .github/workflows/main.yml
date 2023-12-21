@@ -25,11 +25,21 @@ jobs:
 
         - name: Push Docker image to Docker Hub
           run: docker push ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG
-        
-        - name: Connect to EC2 Instance
-          uses: appleboy/ssh-action@master
-          with:
-             host: ${{ secrets.EC2_HOST }}
-             username: ${{ secrets.EC2_USERNAME }}
-             key: ${{ secrets.EC2_PRIVATE_KEY }}
-             port: ${{ secrets.EC2_PORT }}
+  
+  deploy:
+     runs-on: ubuntu-latest
+         
+     steps:
+     - name: Connect to EC2 Instance, update Docker
+       uses: appleboy/ssh-action@master
+       with:
+         host: ${{ secrets.EC2_HOST }}
+         username: ${{ secrets.EC2_USERNAME }}
+         key: ${{ secrets.EC2_PRIVATE_KEY }}
+         port: ${{ secrets.EC2_PORT }}
+         scripts: |
+             docker stop ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG
+             docker rm ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG
+             docker rmi ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG
+             docker pull ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG
+             docker run -p 8082:80 ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG
