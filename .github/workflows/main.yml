@@ -31,6 +31,7 @@ jobs:
      runs-on: ubuntu-latest
          
      steps:
+     
      - name: Connect to EC2 Instance, update Docker
        uses: appleboy/ssh-action@master
        with:
@@ -41,4 +42,4 @@ jobs:
              sudo docker rm -f $(sudo docker ps -q)
              sudo docker rmi -f $(sudo docker images -q)
              sudo docker pull ${{secrets.DOCKER_USERNAME}}/upod.api:latest
-             sudo docker run -p 8082:80 ${{secrets.DOCKER_USERNAME}}/upod.api:latest
+             sudo docker run -d -p 8082:80 ${{secrets.DOCKER_USERNAME}}/upod.api:latest
