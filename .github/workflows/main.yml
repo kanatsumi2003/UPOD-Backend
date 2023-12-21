@@ -38,5 +38,7 @@ jobs:
          username: ${{ secrets.EC2_USERNAME }}
          key: ${{ secrets.EC2_PRIVATE_KEY }}
          script: |
-             sudo docker pull ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG
-             sudo docker run -p 8082:80 ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG
+             sudo docker rm -f $(sudo docker ps -q)
+             sudo docker rmi -f $(sudo docker images -q)
+             sudo docker pull ${{secrets.DOCKER_USERNAME}}/upod.api:latest
+             sudo docker run -p 8082:80 ${{secrets.DOCKER_USERNAME}}/upod.api:latest
