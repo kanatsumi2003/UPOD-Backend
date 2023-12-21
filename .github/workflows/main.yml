@@ -38,8 +38,9 @@ jobs:
          username: ${{ secrets.EC2_USERNAME }}
          key: ${{ secrets.EC2_PRIVATE_KEY }}
          script: |
+             sudo su
              docker stop ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG || true
              docker rm ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG || true
              docker rmi ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG || true
-             docker pull docker pull kanatsumi2003/upod.api:latest
+             docker pull kanatsumi2003/upod.api:latest
              docker run -p 8082:80 ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG
