@@ -27,6 +27,7 @@ jobs:
           run: docker push ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG
   
   deploy:
+     needs: build
      runs-on: ubuntu-latest
          
      steps:
