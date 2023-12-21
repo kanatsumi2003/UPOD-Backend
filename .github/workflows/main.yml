@@ -18,7 +18,10 @@ jobs:
           uses: actions/checkout@v2
         
         - name: Login to Docker Hub
-          run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+	  run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+
+	- name: Navigate to project contains Dockerfile
+  	  run: cd UPOD.API/
 
         - name: Build Docker image
           run: docker build -t ${{secrets.DOCKER_USERNAME}}/$IMAGE:$IMAGE_TAG .
