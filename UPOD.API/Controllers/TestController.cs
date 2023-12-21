@@ -11,5 +11,7 @@ namespace UPOD.API.Controllers
         // GET: api/<TestController>
         [HttpGet]
         public String PrintText() => "Hello world";
+        [HttpPost]
+        public String PrintTexT() => "Hello";
     }
 }
