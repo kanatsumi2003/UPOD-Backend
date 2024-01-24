@@ -14,7 +14,7 @@ namespace UPOD.API.Controllers
 
         public AdminsController(IAdminService admin_sv)
         {
-            _admin_sv = admin_sv;
+            _admin_sv = admin_sv; 
         } 
         [HttpGet]
         [Route("get_all_admins")]
