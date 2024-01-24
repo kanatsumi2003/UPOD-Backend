@@ -2,8 +2,8 @@ name: Build and Deploy NhaMayThep
 
 on:
   pull_request:
-    types:
-      - closed
+    branches:
+      - main
 # on:
 #   push:
 #     branches:
