@@ -1,6 +1,6 @@
 name: Build and Deploy NhaMayThep
 
-  workflow_dispatch:
+on:
   pull_request:
   push:
     branches:
